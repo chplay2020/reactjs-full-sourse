@@ -1,20 +1,23 @@
-import { useState } from "react"
+import { useState } from "react" // Nhập hook useState để quản lý trạng thái của ô input
 
 export function TodoInput(props) {
-    const { handleAddTodo } = props
+    const { handleAddTodo } = props // Nhận hàm handleAddTodo từ App.jsx
+    // State để lưu trữ giá trị hiện tại của ô input
     const [inputValue, setInputValue] = useState('')
 
     return (
-        <div className="input-container">
-            <input value={inputValue}
-                onChange={(e) => { setInputValue(e.target.value) }}
-                placeholder="Add a task" />
+        <div className="input-container"> {/* Container cho input và nút */}
+            <input
+                value={inputValue} // Giá trị của input được kiểm soát bởi state inputValue
+                onChange={(e) => { setInputValue(e.target.value) }} // Cập nhật inputValue mỗi khi người dùng gõ
+                placeholder="Add a task" // Chữ gợi ý trong ô input
+            />
             <button onClick={() => {
-                if (!inputValue) { return }
-                handleAddTodo(inputValue)
-                setInputValue('')
+                if (!inputValue) { return } // Nếu input rỗng, không làm gì cả
+                handleAddTodo(inputValue) // Gọi hàm handleAddTodo (từ App.jsx) với giá trị input hiện tại
+                setInputValue('') // Xóa nội dung ô input sau khi thêm
             }}>
-                <i className="fa-solid fa-plus"></i>
+                <i className="fa-solid fa-plus"></i> {/* Icon dấu cộng từ Font Awesome */}
             </button>
         </div>
     )
