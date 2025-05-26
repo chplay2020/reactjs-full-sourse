@@ -1,8 +1,7 @@
 import { TodoCard } from "./TodoCard" // Nhập component TodoCard
 
 export function TodoList(props) {
-    const { todos, selectedTab } = props // Nhận todos và selectedTab từ App.jsx
-
+    const { todos, selectedTab, handleCompleteTodo, handleDeleteTodo, handleUpdateTodo, handleEditTodo, handleCancelEdit, editingIndex } = props // Nhận todos và selectedTab từ App.jsx, và các hàm xử lý mới
     // Lọc danh sách công việc dựa trên selectedTab
     const filterTodoList = selectedTab === "All" ? todos : // Nếu tab là "All", hiển thị tất cả
         selectedTab === "Completed" ?
@@ -12,16 +11,28 @@ export function TodoList(props) {
     return (
         <>
             {/* Lặp qua danh sách công việc đã được lọc (filterTodoList) */}
-            {filterTodoList.map((todo, todoIndex) => {
+            {filterTodoList.map((todo, index) => { // Sử dụng index của mảng đã lọc cho key tạm thời
+                // Tìm index gốc của todo trong mảng todos ban đầu (mảng đầy đủ trong App.jsx)
+                // Điều này quan trọng vì các hàm xử lý (complete, delete, update) cần index gốc.
+                // So sánh cả 'input' và 'complete' để tăng độ chính xác khi tìm index,
+                // phòng trường hợp có các todo với nội dung giống hệt nhau.
+                const originalTodoIndex = todos.findIndex(val => val.input === todo.input && val.complete === todo.complete);
+
                 return (
                     <TodoCard
-                        key={todoIndex} // Key cho React
-                        // Tìm index gốc của todo trong mảng todos ban đầu
-                        // Điều này quan trọng để đảm bảo handleCompleteTodo và handleDeleteTodo hoạt động đúng
-                        // trên mảng todos gốc trong App.jsx
-                        todoIndex={todos.findIndex(val => val.input == todo.input)}
-                        {...props} // Truyền tất cả các props còn lại (bao gồm handleCompleteTodo, handleDeleteTodo)
+                        // Cập nhật key để đảm bảo tính duy nhất và ổn định hơn,
+                        // đặc biệt khi danh sách thay đổi hoặc có các todo giống hệt nhau.
+                        // Sử dụng originalTodoIndex và todo.input để tạo key.
+                        key={`${originalTodoIndex}-${todo.input}`}
+                        todoIndex={originalTodoIndex} // Truyền index gốc
                         todo={todo} // Truyền đối tượng todo hiện tại cho TodoCard
+                        handleCompleteTodo={handleCompleteTodo}
+                        handleDeleteTodo={handleDeleteTodo}
+                        // Truyền các props mới liên quan đến chỉnh sửa xuống TodoCard
+                        handleUpdateTodo={handleUpdateTodo}
+                        handleEditTodo={handleEditTodo}
+                        handleCancelEdit={handleCancelEdit}
+                        editingIndex={editingIndex}
                     />
                 )
             })}

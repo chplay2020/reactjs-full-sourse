@@ -13,6 +13,9 @@ function App() {
   ])
   // State: tab đang được chọn (ví dụ: 'All', 'Open', 'Completed')
   const [selectedTab, setSelectedTab] = useState('Open')
+  // State mới: theo dõi index của công việc đang được chỉnh sửa.
+  // Nếu giá trị là null, không có công việc nào đang ở chế độ chỉnh sửa.
+  const [editingIndex, setEditingIndex] = useState(null);
 
   // Hàm thêm một công việc mới
   function handleAddTodo(newTodo) {
@@ -42,29 +45,70 @@ function App() {
     handleSaveTodos(newTodoList) // Lưu vào localStorage
   }
 
+  // Hàm mới: cập nhật nội dung công việc đã sửa
+  function handleUpdateTodo(index, updatedText) {
+    // Kiểm tra nếu nội dung mới là rỗng sau khi loại bỏ khoảng trắng
+    if (updatedText.trim() === '') {
+      // Nếu nội dung rỗng, hủy chỉnh sửa để tránh tạo todo rỗng.
+      // Có thể thay thế bằng việc xóa todo hoặc hiển thị thông báo lỗi.
+      handleCancelEdit(); // Hiện tại, chỉ hủy chỉnh sửa
+      return; // Kết thúc hàm sớm
+    }
+    // Sao chép mảng todos hiện tại để không thay đổi trực tiếp state
+    const newTodoList = [...todos];
+    // Cập nhật thuộc tính 'input' của công việc tại vị trí 'index'
+    newTodoList[index].input = updatedText;
+    // Cập nhật state todos với danh sách mới
+    setTodos(newTodoList);
+    // Lưu danh sách công việc mới vào localStorage
+    handleSaveTodos(newTodoList);
+    // Thoát khỏi chế độ chỉnh sửa bằng cách đặt editingIndex về null
+    setEditingIndex(null);
+  }
+
+  // Hàm mới: bắt đầu chỉnh sửa một công việc
+  function handleEditTodo(index) {
+    // Đặt editingIndex thành index của công việc cần chỉnh sửa.
+    // Điều này sẽ kích hoạt giao diện chỉnh sửa cho TodoCard tương ứng.
+    setEditingIndex(index);
+  }
+
+  // Hàm mới: hủy bỏ chỉnh sửa
+  function handleCancelEdit() {
+    // Đặt editingIndex về null để thoát khỏi chế độ chỉnh sửa.
+    // Giao diện sẽ quay trở lại hiển thị nội dung công việc bình thường.
+    setEditingIndex(null);
+  }
+
   // Hàm lưu danh sách công việc vào localStorage
   function handleSaveTodos(currTodos) {
     localStorage.setItem("todo-app", JSON.stringify({ todos: currTodos }))
   }
 
   // useEffect để tải công việc từ localStorage khi component được mount
-  // và có thể để lưu khi todos thay đổi (cần cẩn thận với dependency array)
   useEffect(() => {
-    // Kiểm tra xem localStorage có tồn tại và có dữ liệu không
     if (!localStorage || !localStorage.getItem("todo-app")) {
       return
     }
-    console.log("here") // Dòng này có thể để debug
-    let db = JSON.parse(localStorage.getItem("todo-app")) // Lấy và parse dữ liệu
-    setTodos(db.todos) // Cập nhật state với dữ liệu từ localStorage
-  }, []) // Mảng dependency rỗng `[]` nghĩa là effect này chỉ chạy một lần sau khi component mount
+    let db = JSON.parse(localStorage.getItem("todo-app"))
+    setTodos(db.todos)
+  }, [])
 
   // Phần JSX để render giao diện
   return (
     <>
       <Header todos={todos} />
       <Tabs selectedTab={selectedTab} setSelectedTab={setSelectedTab} todos={todos} />
-      <TodoList handleCompleteTodo={handleCompleteTodo} handleDeleteTodo={handleDeleteTodo} selectedTab={selectedTab} todos={todos} />
+      <TodoList
+        todos={todos}
+        selectedTab={selectedTab}
+        handleCompleteTodo={handleCompleteTodo}
+        handleDeleteTodo={handleDeleteTodo}
+        handleUpdateTodo={handleUpdateTodo}   // Prop mới: hàm cập nhật todo
+        handleEditTodo={handleEditTodo}       // Prop mới: hàm bắt đầu chỉnh sửa
+        handleCancelEdit={handleCancelEdit}   // Prop mới: hàm hủy chỉnh sửa
+        editingIndex={editingIndex}           // Prop mới: state chỉ số todo đang sửa
+      />
       <TodoInput handleAddTodo={handleAddTodo} />
     </>
   )

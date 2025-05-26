@@ -109,16 +109,33 @@ hr {
   background: var(--color-link-transparent);
 }
 
-
 .todo-item p {
   font-weight: 500;
+  flex-grow: 1; /* Cho phép text chiếm không gian còn lại */
+  word-break: break-word; /* Ngăn text dài làm vỡ layout */
+}
+
+/* Style cho input khi chỉnh sửa */
+.todo-item .edit-input {
+  flex-grow: 1;
+  padding: 0.5rem;
+  border: 1px solid var(--border-secondary);
+  border-radius: var(--border-radius-small);
+  font-size: inherit; /* Kế thừa font size từ parent */
+  font-family: inherit; /* Kế thừa font family */
+  color: var(--color-primary);
+  background-color: var(--background-muted);
+}
+.todo-item .edit-input:focus {
+  outline: none;
+  border-color: var(--border-highlight);
 }
 
 .input-container {
   display: flex;
-  align-items: center;
-  gap: 1rem;
-}
+    align-items: center;
+    gap: 1rem;
+  }
 
 .input-container input {
   width: 100%;
