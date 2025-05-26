@@ -39,7 +39,8 @@ export function TodoCard(props) {
     };
     return (
         <div className={`card todo-item ${todo.complete ? 'todo-complete' : ''}`}>
-            {isEditing ? (
+            {/* --- SỬA ĐỔI: Hiển thị có điều kiện dựa trên isEditing --- */}
+            {isEditing ? ( // NẾU isEditing LÀ TRUE (công việc này đang được sửa):
                 <input
                     type="text"
                     value={editText}
@@ -54,12 +55,12 @@ export function TodoCard(props) {
                         }
                     }}
                 />
-            ) : (
+            ) : ( // NẾU isEditing LÀ FALSE (công việc này KHÔNG được sửa):
                 <p>{todo.input}</p>
             )}
 
             <div className="todo-buttons">
-                {isEditing ? (
+                {isEditing ? ( // NẾU isEditing LÀ TRUE:
                     <>
                         <button onClick={onSave}>
                             <h4>Save</h4>
@@ -69,6 +70,7 @@ export function TodoCard(props) {
                         </button>
                     </>
                 ) : (
+                    // NẾU isEditing LÀ FALSE:
                     <>
                         <button
                             onClick={() => handleCompleteTodo(todoIndex)}
