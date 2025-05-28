@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react'
 import { getFullPokedexNumber, getPokedexNumber } from '../utils'
+import { TypeCard } from './TypeCard'
 
 
 export function PokeCard(props) {
@@ -68,6 +69,17 @@ export function PokeCard(props) {
                 <h4>#{getFullPokedexNumber(selectedPokemon)}</h4>
                 <h2>{name}</h2>
             </div>
+            <div className='type-container'>
+                {types.map((typeObj, typeIndex) => {
+                    return (
+                        <TypeCard key={typeIndex} type={typeObj?.type?.name} />
+                    )
+                })}
+            </div>
+            <img className="default-img"
+                src={`/pokemon/${getFullPokedexNumber(selectedPokemon)}.png`}
+                alt={`${name}-large-img`}
+            />
         </div>
     )
 }
