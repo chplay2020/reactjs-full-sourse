@@ -6,7 +6,7 @@ export function TodoList(props) {
     const filterTodoList = selectedTab === "All" ? todos : // Nếu tab là "All", hiển thị tất cả
         selectedTab === "Completed" ?
             todos.filter(val => val.complete) : // Nếu tab là "Completed", chỉ hiển thị công việc đã hoàn thành
-            todos.filter(val => !val.complete); // Mặc định (tab "Open"), chỉ hiển thị công việc chưa hoàn thành
+            todos.filter(val => !val.complete); // Nếu tab là "Open", chỉ hiển thị công việc chưa hoàn thành
 
     return (
         <>

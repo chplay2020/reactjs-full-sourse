@@ -133,7 +133,7 @@ export function PokeCard(props) {
     return (
         <div className='poke-card'>
             {/* Hiển thị Modal nếu có skill được chọn */}
-            {skill && (
+            {skill && ( //  Nếu skill không null hoặc không undefined thì hiển thị Modal(nếu vế trái là true thì trả về vế phải, ngược lại trả về vế trái)
                 <Modal handleCloseModal={() => { setSkill(null) }}>
                     <div>
                         <h6>Name</h6>

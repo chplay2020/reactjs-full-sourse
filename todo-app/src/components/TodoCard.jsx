@@ -17,7 +17,7 @@ export function TodoCard(props) {
     const [editText, setEditText] = useState(todo.input);
 
     // Kiểm tra xem công việc này có đang được chỉnh sửa không
-    const isEditing = editingIndex === todoIndex;
+    const isEditing = editingIndex === todoIndex; // giá trị isEditing là true và false, nó sẽ là true nếu kiểm tra điều kiện editingIndex bằng với todoIndex
 
     // Cập nhật editText nếu todo.input thay đổi (ví dụ: khi hủy chỉnh sửa)
     useEffect(() => {
@@ -38,6 +38,7 @@ export function TodoCard(props) {
         handleCancelEdit();
     };
     return (
+        //Kiểm tra todo.complete nếu tre thì thêm class todo-complete để đổi style khi todo đã hoàn thành
         <div className={`card todo-item ${todo.complete ? 'todo-complete' : ''}`}>
             {/* --- SỬA ĐỔI: Hiển thị có điều kiện dựa trên isEditing --- */}
             {isEditing ? ( // NẾU isEditing LÀ TRUE (công việc này đang được sửa):
@@ -62,7 +63,7 @@ export function TodoCard(props) {
             <div className="todo-buttons">
                 {isEditing ? ( // NẾU isEditing LÀ TRUE:
                     <>
-                        <button onClick={onSave}>
+                        <button onClick={onSave}> {/*lưu giá trị editText vào todo.input*/}
                             <h4>Save</h4>
                         </button>
                         <button onClick={onCancel}>
@@ -70,7 +71,7 @@ export function TodoCard(props) {
                         </button>
                     </>
                 ) : (
-                    // NẾU isEditing LÀ FALSE:
+                    // NẾU isEditing LÀ FALSE:S
                     <>
                         <button
                             onClick={() => handleCompleteTodo(todoIndex)}
@@ -78,8 +79,8 @@ export function TodoCard(props) {
                         >
                             <h4>Complete</h4>
                         </button>
-                        <button onClick={() => handleEditTodo(todoIndex)} disabled={todo.complete}>
-                            <h4>Edit</h4>
+                        <button onClick={() => handleEditTodo(todoIndex)} disabled={todo.complete}> {/*chỉnh sửa todo khi nhấn edit và nút Edit không thể click khi todo.complete = true */}
+                            <h4>Edit</h4>                                                            {/*(disabled như ổ khóa để không thể chỉnh sửa todo đã hoàn thành)*/}
                         </button>
                         <button onClick={() => handleDeleteTodo(todoIndex)}>
                             <h4>Delete</h4>

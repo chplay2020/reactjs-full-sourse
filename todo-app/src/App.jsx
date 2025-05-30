@@ -20,7 +20,7 @@ function App() {
   // Hàm thêm một công việc mới
   function handleAddTodo(newTodo) {
     // Tạo danh sách mới bằng cách thêm công việc mới (chưa hoàn thành)
-    const newTodoList = [...todos, { input: newTodo, complete: false }]
+    const newTodoList = [...todos, { input: newTodo, complete: false }] // lấy tất cả giá trị của todos ban đầu và thêm vào 1 công việc mới(newTodo) với trạng thái 'complete' là false
     setTodos(newTodoList) // Cập nhật state
     handleSaveTodos(newTodoList) // Lưu vào localStorage
   }
@@ -56,8 +56,7 @@ function App() {
     }
     // Sao chép mảng todos hiện tại để không thay đổi trực tiếp state
     const newTodoList = [...todos];
-    // Cập nhật thuộc tính 'input' của công việc tại vị trí 'index'
-    newTodoList[index].input = updatedText;
+    newTodoList[index].input = updatedText; // Truy cập vào phần tử todo ở vị trí index, và thay đổi nội dung input thành updatedText.
     // Cập nhật state todos với danh sách mới
     setTodos(newTodoList);
     // Lưu danh sách công việc mới vào localStorage

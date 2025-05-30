@@ -1,7 +1,7 @@
 import { children } from 'react'; // Import Children (không sử dụng trong code này)
 import ReactDom from 'react-dom'; // Import ReactDom để sử dụng createPortal
 
-export function Modal(props) {
+export function Modal(props) { //props từ PokeCard
     const { children, handleCloseModal } = props // Lấy children và hàm đóng modal từ props
     return ReactDom.createPortal( // Render modal vào element có id='portal'
         <div className='modal-container'>
