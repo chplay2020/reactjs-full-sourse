@@ -2,7 +2,7 @@ import { coffeeOptions } from "../utils";
 
 export default function CoffeeForm() {
     return (
-        <div>
+        <>
             <div className="section-header">
                 <i className="fa-solid fa-pencil"></i>
                 <h2>Start Tracking Today</h2>
@@ -17,7 +17,21 @@ export default function CoffeeForm() {
                         </button>
                     )
                 })}
+                <button className="button-card">
+                    <h4>Other</h4>
+                    <p>n/a</p>
+                </button>
             </div>
-        </div>
+            <select name="coffee-list" id="coffee-list">
+                <option value={null}>Select type</option>
+                {coffeeOptions.map((option, optionIndex) => {
+                    return (
+                        <option key={optionIndex} value={option.name}>
+                            {option.name} ({option.caffeine}mg)
+                        </option>
+                    )
+                })}
+            </select>
+        </>
     )
 }
