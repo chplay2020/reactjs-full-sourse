@@ -143,7 +143,7 @@ h2 {
   padding-top: 1.5rem;
   font-size: 1.2rem;
 }
-
+/* phần sử dụng tronng select coffee type */
 .coffee-grid {
   display: grid;
   grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -161,6 +161,7 @@ h2 {
 .coffee-button-selected {
   border-color: var(--border-highlight) !important;
 }
+/* kết thúc phần sử dụng trong select coffee type */
 
 .stats-grid,
 .time-entry {

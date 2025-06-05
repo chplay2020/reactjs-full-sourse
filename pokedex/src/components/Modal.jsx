@@ -14,3 +14,10 @@ export function Modal(props) { //props từ PokeCard
         document.getElementById('portal') // Element DOM để render modal
     )
 }
+
+
+// Cách children (React) hoạt động
+//<Modal>
+//  <div>Nội dung này</div>
+//</Modal>
+// Hiểu phần children của props sẽ là: props.children = <div>Nội dung này</div>

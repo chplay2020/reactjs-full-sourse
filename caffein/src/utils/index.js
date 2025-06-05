@@ -22,8 +22,9 @@ export const statusLevels = {
 
 // Object chứa lịch sử tiêu thụ cà phê với timestamp làm key
 export const coffeeConsumptionHistory = {
-    "1727579064032": { "name": "Americano", "cost": 5.52 }, // Timestamp: tên đồ uống và giá tiền
-    "1727629263026": { "name": "Rockstar Energy (16oz)", "cost": 6.78 }, // Mỗi entry có tên và giá
+    // key                      value
+    "1727579064032": { "name": "Americano", "cost": 5.52 },
+    "1727629263026": { "name": "Rockstar Energy (16oz)", "cost": 6.78 }, // Mỗi entry có tên và giá (value)
     "1727571485301": { "name": "Macchiato", "cost": 6.93 }, // Timestamp là milliseconds từ epoch
     "1727585485245": { "name": "Instant Coffee (1 tsp)", "cost": 4.90 }, // Dữ liệu mẫu cho demo
     "1727614392214": { "name": "Irish Coffee", "cost": 4.88 },
@@ -118,7 +119,8 @@ export function calculateCurrentCaffeineLevel(historyData) {
     let totalCaffeine = 0 // Biến tích lũy tổng caffeine
 
     // Duyệt qua từng entry trong lịch sử tiêu thụ
-    for (const [timestamp, entry] of Object.entries(historyData)) {
+    for (const [timestamp, entry] of Object.entries(historyData)) { //Object.entries(historyData): Chuyển đổi object historyData thành một mảng các cặp [key, value]
+        // timestamp: là key của object historyData, entry: là value của object historyData
         const timeElapsed = currentTime - parseInt(timestamp) // Tính thời gian đã trôi qua
 
         // Chỉ tính những entry trong vòng 48 giờ qua
