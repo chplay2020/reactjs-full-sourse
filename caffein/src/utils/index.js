@@ -145,24 +145,42 @@ export function getCaffeineAmount(coffeeName) {
 export function getTopThreeCoffees(historyData) {
     const coffeeCount = {} // Object để đếm số lần tiêu thụ mỗi loại
 
-    // Đếm số lần xuất hiện của mỗi loại cà phê
+    // Chỉ quan tâm đến TÊN để đếm số lần xuất hiện
     for (const entry of Object.values(historyData)) {
-        const coffeeName = entry.name // Lấy tên đồ uống
+        const coffeeName = entry.name // chỉ lấy tên đồ uống
         if (coffeeCount[coffeeName]) { // Nếu đã tồn tại
-            coffeeCount[coffeeName]++ // Tăng counter lên 1
+            coffeeCount[coffeeName]++ // Tăng counter lên 1 // Ví dụ: Americano: 3(lần), Latte: 2(lần)
         } else {
             coffeeCount[coffeeName] = 1 // Khởi tạo counter = 1
         }
     }
 
     // Chuyển đổi object thành array và sắp xếp theo số lần tiêu thụ giảm dần
-    const sortedCoffees = Object.entries(coffeeCount).sort((a, b) => b[1] - a[1])
+    const sortedCoffees = Object.entries(coffeeCount).sort((a, b) => b[1] - a[1]) // Object.entries() chuyển đối tượng thành array để sort
+    // a và b là các array con, ví dụ: a = ["Americano", 5], b = ["Latte", 3]
+    // a[0] = "Americano", a[1] = 5
+    // b[0] = "Latte", b[1] = 3
+
+    // b[1] - a[1] = 3 - 5 = -2 (âm) → a đứng trước b
+    // Sắp xếp theo count giảm dần (index [1])
+
+    // Kết quả sau khi sort:
+    {
+        /*[
+            ["Espresso", 8],     // cao nhất
+            ["Americano", 5],    
+            ["Latte", 3],
+            ["Cappuccino", 2]    // thấp nhất
+        ]*/
+    }
+
+
 
     // Tính tổng số cà phê đã tiêu thụ
     const totalCoffees = Object.values(coffeeCount).reduce((sum, count) => sum + count, 0)
 
     // Lấy top 3 và tính phần trăm
-    const topThree = sortedCoffees.slice(0, 3).map(([coffeeName, count]) => {
+    const topThree = sortedCoffees.slice(0, 3).map(([coffeeName, count]) => { //lấy top 3 giá trị đầu tiên sau khi thực hiện lênh dưới
         const percentage = ((count / totalCoffees) * 100).toFixed(2) // Tính phần trăm
         return {
             coffeeName: coffeeName, // Tên đồ uống
