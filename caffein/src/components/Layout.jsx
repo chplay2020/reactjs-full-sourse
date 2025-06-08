@@ -1,5 +1,11 @@
+import { useState } from "react";
+import Model from "./Model";
+import Authentication from "./Authentication";
+
 export default function Layout(props) {
     const { children } = props;
+
+    const [showModal, setShowModal] = useState(false)
 
     const header = (
         <header>
@@ -7,7 +13,7 @@ export default function Layout(props) {
                 <h1 className="text-gradient">CAFFEIN</h1>
                 <p>For Coffe Insatiates</p>
             </div>
-            <button>
+            <button onClick={() => setShowModal(true)}>
                 <p>Sign up free</p>
                 <i className="fa-solid fa-mug-hot"></i>
             </button>
@@ -17,11 +23,19 @@ export default function Layout(props) {
     const footer = (
         <footer>
             <p><span className="text-gradient">Caffein</span> was made by <a target="_blank" href="">chplay2020</a><br />
-                using the <a href="" target="_blank">FantaCSS</a> design library.</p>
+                using the <a href="" target="_blank">FantaCSS</a> design library.<br />
+                Check out the project on <a target="_black"
+                    href="https://github.com/chplay2020/reactjs-full-sourse/tree/main/caffein">
+                    Github</a>!</p>
         </footer>
     )
     return (
         <>
+            {showModal && (
+                <Model handleCloseModal={() => setShowModal(false)}>
+                    <Authentication />
+                </Model>
+            )}
             {header}
             <main>
                 {children}

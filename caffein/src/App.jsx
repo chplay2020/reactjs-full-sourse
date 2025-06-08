@@ -6,7 +6,7 @@ import History from "./components/History";
 
 function App() {
 
-  const isAuthenticated = true
+  const isAuthenticated = false
 
   const authenticatedContent = (
     <>
@@ -18,7 +18,7 @@ function App() {
   return (
     <Layout> {/*nội dung trong Layout chính là phần children của Layout*/}
       <Hero />
-      <CoffeeForm />
+      <CoffeeForm isAuthenticated={isAuthenticated} />
       {isAuthenticated && (authenticatedContent)} {/*nếu isAuthenticated không false thì hiển thị authenticatedContent*/}
     </Layout>
   )
