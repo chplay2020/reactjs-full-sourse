@@ -22,3 +22,9 @@ export default function Hero() {
         </>
     )
 }
+
+// Chức năng chính:
+{/*- Hiển thị tiêu đề và slogan ứng dụng
+- Liệt kê các tính năng chính (benefits-list)
+- Thông tin giáo dục về caffeine (info-card)
+- Giao diện tĩnh, không có logic phức tạp*/}

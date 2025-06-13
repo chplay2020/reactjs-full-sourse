@@ -58,3 +58,11 @@ export default function Layout(props) {
         </>
     );
 }
+
+
+// Chức năng chính:
+{/*- Wrapper component cho toàn bộ ứng dụng
+- Header với logo và nút đăng nhập/đăng xuất
+- Footer với thông tin tác giả và links
+- Quản lý modal đăng nhập từ header
+- Hiển thị nút khác nhau dựa trên trạng thái đăng nhập*/}

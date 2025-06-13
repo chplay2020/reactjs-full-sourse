@@ -83,3 +83,10 @@ export function AuthProvider(props) {
         </AuthContext.Provider>
     )
 }
+
+//chức năng chính
+{/*- Tạo Context để chia sẻ trạng thái xác thực toàn ứng dụng
+- Quản lý đăng ký, đăng nhập, đăng xuất, reset mật khẩu
+- Lưu trữ thông tin người dùng (globalUser, globalData)
+- Đồng bộ dữ liệu với Firebase Firestore
+- Theo dõi trạng thái xác thực realtime*/}

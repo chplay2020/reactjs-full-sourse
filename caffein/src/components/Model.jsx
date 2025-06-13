@@ -13,3 +13,10 @@ export default function Modal(props) {
         document.getElementById('portal')
     )
 }
+
+
+// Chức năng chính:
+{/*- Tạo modal overlay sử dụng React Portal
+- Render content vào DOM element #portal
+- Xử lý đóng modal khi click overlay
+- Component tái sử dụng cho các modal khác nhau*/}

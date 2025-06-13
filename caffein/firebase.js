@@ -6,7 +6,7 @@ import { getFirestore } from "firebase/firestore"
 // https://firebase.google.com/docs/web/setup#available-libraries
 
 // Your web app's Firebase configuration
-const firebaseConfig = {
+const firebaseConfig = { // địa chỉ của firebase nằm trong file .env
   apiKey: import.meta.env.VITE_FIREBASE_API_KEY,
   authDomain: import.meta.env.VITE_FIREBASE_API_AUTHDOMAIN,
   projectId: import.meta.env.VITE_FIREBASE_API_PROJECTID,

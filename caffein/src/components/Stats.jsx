@@ -73,3 +73,11 @@ export default function Stats() {
         </>
     )
 }
+
+
+// Chức năng chính:
+{/*- Hiển thị mức caffeine hiện tại trong cơ thể
+- Thống kê hàng ngày: caffeine, số cà phê, chi phí
+- Tổng chi phí tích lũy
+- Bảng top 3 loại cà phê được uống nhiều nhất
+- Phân loại mức độ caffeine (low/moderate/high) với màu sắc*/}

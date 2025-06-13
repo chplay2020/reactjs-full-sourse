@@ -165,3 +165,10 @@ export default function CoffeeForm(props) {
         </>
     )
 }
+
+// Chức năng chính:
+{/*- Cho phép chọn loại cà phê từ danh sách có sẵn
+- Nhập giá tiền và thời gian uống
+- Lưu dữ liệu vào Firebase khi đã đăng nhập
+- Hiển thị modal đăng nhập nếu chưa xác thực
+- Reset form sau khi submit thành công*/}

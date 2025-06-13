@@ -51,3 +51,11 @@ export default function Authentication(props) {
         </>
     )
 }
+
+
+// Chức năng chính:
+{/*- Hiển thị form đăng nhập hoặc đăng ký
+- Chuyển đổi giữa 2 chế độ (Login/Sign Up)
+- Xử lý validation email và password
+- Gọi các hàm xác thực từ AuthContext
+- Hiển thị lỗi nếu có*/}

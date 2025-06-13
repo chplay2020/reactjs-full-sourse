@@ -36,3 +36,10 @@ export default function History() {
     )
 }
 
+
+// Chức năng chính:
+{/*- Hiển thị timeline các lần uống cà phê
+- Sắp xếp theo thời gian (mới nhất trước)
+- Tính toán caffeine còn lại trong cơ thể
+- Hiển thị tooltip với thông tin chi tiết
+- Sử dụng icon cà phê cho mỗi entry*/}
