@@ -49,7 +49,7 @@ export default function Authentication(props) {
             setIsAuthenticating(false) // kết thúc loading
         }
 
-    }
+    }// end handleAuthenticate
 
     return (
         <>
