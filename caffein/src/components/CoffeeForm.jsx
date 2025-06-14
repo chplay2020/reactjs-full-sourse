@@ -24,13 +24,13 @@ export default function CoffeeForm(props) {
             return
         }
 
-        // define a guard clause that only submits the form if it is completed
+        // định nghĩa một điều kiện bảo vệ chỉ gửi biểu mẫu nếu nó đã được hoàn thành
         if (!selectedCoffee) {
             return
         }
 
         try {
-            // then we're going to create a new data object
+            // sau đó chúng ta sẽ tạo một đối tượng dữ liệu mới
             const newGlobalData = {
                 ...(globalData || {})
             }
@@ -46,10 +46,10 @@ export default function CoffeeForm(props) {
             newGlobalData[timestamp] = newData
             console.log(timestamp, selectedCoffee, coffeeCost)
 
-            // update the global state
+            // cập nhật trạng thái toàn cục
             setGlobalData(newGlobalData)
 
-            // persist the data in the firebase firestore
+            // lưu trữ dữ liệu trong firebase firestore
             const userRef = doc(db, 'users', globalUser.uid)
             const res = await setDoc(userRef, {
                 [timestamp]: newData

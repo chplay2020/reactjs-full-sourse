@@ -10,25 +10,43 @@ export default function Authentication(props) {
 
     const { signup, login } = useAuth()
 
-    async function handleAuthenticate() {
-        if (!email || !email.includes('@') || !password || password.length < 6 || isAuthenticating) { return }
-        try {
-            setIsAuthenticating(true)
+    // async cho phép sử dụng await trong hàm để đợi một Promise hoàn thành và trả về kết quả
+    async function handleAuthenticate() { // hàm này được gọi khi người dùng nhấn nút đăng nhập hoặc đăng ký
+        // kiểm tra điều kiện để đăng nhập hoặc đăng ky
+        if (!email) {
+            setError('Email cannot be empty.');
+            return;
+        }
+        if (!email.includes('@')) {
+            setError('Please enter a valid email address.');
+            return;
+        }
+        if (!password) {
+            setError('Password cannot be empty.');
+            return;
+        }
+        if (password.length < 6) {
+            setError('Password must be at least 6 characters long.');
+            return;
+        }
+
+        try { // try catch để xử lý các lỗi xảy ra trong quá trình đăng nhập
+            setIsAuthenticating(true) // băt đầu loading
             setError(null)
 
             if (isRegistration) {
                 // register a user
-                await signup(email, password)
+                await signup(email, password) // đợi đăng ký hoàn thành
             } else {
                 // login a user
-                await login(email, password)
+                await login(email, password) // đợi đăng nhập hoàn thành
             }
             handleCloseModal()
-        } catch (err) {
+        } catch (err) { // xử lý nếu có lỗi
             console.log(err.message)
             setError(err.message)
-        } finally {
-            setIsAuthenticating(false)
+        } finally { // luôn chạy, dù có lỗi hay không
+            setIsAuthenticating(false) // kết thúc loading
         }
 
     }
@@ -37,10 +55,11 @@ export default function Authentication(props) {
         <>
             <h2 className="sign-up-text">{isRegistration ? 'Sign Up' : 'Login'}</h2>
             <p>{isRegistration ? 'Create an account!' : 'Sign in to your account!'}</p>
-            {error && (
-                <p>❌ {error}</p>
+            {error && ( // nếu error có giá trị thì hiển thị thông báo lỗi
+                <p style={{ color: "red", fontWeight: "bold" }}>❌ {error}</p>
             )}
-            <input value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" />
+            <input value={email} onChange={(e) => { setEmail(e.target.value) }} placeholder="Email" /> {/*onChange xử lý sự kiện thay đổi giá trị của input */}
+            {/* với e.target.vale là giá trị của input*/}
             <input value={password} onChange={(e) => { setPassword(e.target.value) }} placeholder="********" type="password" />
             <button onClick={handleAuthenticate}><p>{isAuthenticating ? 'Authenticating...' : 'Submit'}</p></button>
             <hr />

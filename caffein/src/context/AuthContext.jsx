@@ -8,12 +8,12 @@ import { doc, getDoc } from "firebase/firestore"
 
 const AuthContext = createContext()
 
-export function useAuth() {
+export function useAuth() { // các file import vào đây để có thể sử dụng các chức năng trong AuthProvider 
     return useContext(AuthContext)
 }
 
 export function AuthProvider(props) {
-    const { children } = props
+    const { children } = props // nội dung và các component con được truyền vào AuthProvider(check trong main.js)
     const [globalUser, setGlobalUser] = useState(null)
     const [globalData, setGlobalData] = useState(null)
     const [isLoading, setIsLoading] = useState(false)
@@ -35,7 +35,7 @@ export function AuthProvider(props) {
         setGlobalData(null)
         return signOut(auth)
     }
-
+    //tạo value để truyền dữ liệu xuống component con (chứa tất cả state và functions mà các component con cần sử dụng)
     const value = { globalUser, globalData, setGlobalData, isLoading, signup, login, logout, resetPassword }
 
 
@@ -66,8 +66,8 @@ export function AuthProvider(props) {
                     firebaseData = docSnap.data()
                 }
                 setGlobalData(firebaseData)
-            } catch (error) {
-                console.log(error.message)
+            } catch (err) {
+                console.log(err.message)
             } finally {
                 setIsLoading(false)
             }
@@ -79,8 +79,11 @@ export function AuthProvider(props) {
 
     return (
         <AuthContext.Provider value={value}>
-            {children}
+            {children} {/*chính là nội dung và các component con được truyền vào AuthProvider(check trong file main.js)*/}
         </AuthContext.Provider>
+        //Đây là Provider component được tạo ra từ AuthContext
+        //Provider có nhiệm vụ "cung cấp" dữ liệu cho tất cả component con bên trong nó
+        //Mọi component nằm trong Provider này đều có thể truy cập được dữ liệu thông qua Context
     )
 }
 
