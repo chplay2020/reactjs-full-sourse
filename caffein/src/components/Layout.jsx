@@ -16,11 +16,11 @@ export default function Layout(props) {
                 <h1 className="text-gradient">CAFFEIN</h1>
                 <p>For Coffe Insatiates</p>
             </div>
-            {globalUser ? (
+            {globalUser ? ( // nếu true thì thực hiện lệnh sau
                 <button onClick={logout}>
                     <p>Logout</p>
                 </button>
-            ) : (
+            ) : ( // nếu false thì thực hiện lệnh sau
                 <button onClick={() => setShowModal(true)}>
                     <p>Sign up free</p>
                     <i className="fa-solid fa-mug-hot"></i>
@@ -46,13 +46,13 @@ export default function Layout(props) {
     return (
         <>
             {showModal && (
-                <Model handleCloseModal={handleCloseModal}>
-                    <Authentication handleCloseModal={handleCloseModal} />
+                <Model handleCloseModal={handleCloseModal}> {/*Add component con*/}
+                    <Authentication handleCloseModal={handleCloseModal} /> {/*children của Modal*/}
                 </Model>
             )}
             {header}
             <main>
-                {children}
+                {children} {/*nội dung nằm trong file App.js được truyền vào*/}
             </main>
             {footer}
         </>

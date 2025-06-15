@@ -5,7 +5,7 @@ import {
 } from "../utils";
 
 export default function History() {
-    const { globalData } = useAuth()
+    const { globalData } = useAuth() // lấy dữ liệu từ context
 
     return (
         <>
