@@ -1,14 +1,55 @@
-# reactjs-full-sourse
+## 📘 Dự án học tập code React (Bao gồm 3 project)
 
-# React + Vite
+### 🚀 Mô tả
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+Dự án này được mình thực hiện trong quá trình học React thông qua video hướng dẫn trên YouTube.
+Mục tiêu là để luyện tập các khái niệm cơ bản trong React như:
 
-Currently, two official plugins are available:
+* JSX
+* Component
+* Props & State
+* useEffect / useState / useContext
+* Event handling
+* Conditional rendering
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+Mình đã tự gõ lại toàn bộ code, đọc hiểu từng phần và sẽ tiếp tục mở rộng thêm các tính năng trong tương lai.
 
-## Expanding the ESLint configuration
+> 📚 Video học theo: ( https://www.youtube.com/watch?v=iKpkVKubvKk&t=28013s )
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+---
+
+### 🛠️ Công nghệ sử dụng
+
+* React
+* Vite
+* JavaScrip
+* Firebase (ở project đầu tiên)
+
+---
+
+### ▶️ Cách chạy project
+
+# Clone repo
+git clone https://github.com/yourusername/tên-repo.git
+cd tên-repo
+
+# Cài đặt dependencies
+npm install
+
+# Chạy project
+npm run dev
+
+---
+
+### 💡 Ghi chú
+
+* Dự án học tập, không phải sản phẩm chính thức.
+* Mình đang tiếp tục luyện tập và sẽ cải thiện thêm giao diện, tính năng và codebase.
+
+---
+
+### 📩 Liên hệ
+
+Nếu bạn muốn chia sẻ hoặc góp ý, có thể liên hệ với mình qua:
+
+* GitHub: ( https://github.com/chplay2020 )
