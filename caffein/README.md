@@ -12,7 +12,7 @@ Mục tiêu là để luyện tập các khái niệm cơ bản trong React như
 * Event handling
 * Conditional rendering
 
-Mình đã tự gõ lại toàn bộ code, đọc hiểu từng phần và sẽ tiếp tục mở rộng thêm các tính năng trong tương lai.
+Mình đã tự gõ lại toàn bộ code, đọc hiểu từng phần, note các chức năng từng đoạn code, note phương thức hoạt động cũng như trình tự hoạt động của code theo cách hiểu của mình và sẽ tiếp tục mở rộng thêm các tính năng trong tương lai.
 
 > 📚 Video học theo: ( https://www.youtube.com/watch?v=iKpkVKubvKk&t=28013s )
 
