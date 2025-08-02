@@ -3,9 +3,9 @@ import { useState, useEffect } from 'react';
 export function TodoCard(props) {
     // Trích xuất các props cần thiết, bao gồm cả các props mới cho việc chỉnh sửa
     const {
-        todo,
+        todo, // từ TodoList
         handleDeleteTodo,
-        todoIndex,
+        todoIndex, // từ TodoList
         handleCompleteTodo,
         handleUpdateTodo,
         handleEditTodo,
@@ -22,7 +22,7 @@ export function TodoCard(props) {
     // Cập nhật editText nếu todo.input thay đổi (ví dụ: khi hủy chỉnh sửa)
     useEffect(() => {
         setEditText(todo.input);
-    }, [todo.input]);
+    }, [todo.input]); // effect chỉ chạy khi todo.input thay đổi
 
     const onSave = () => {
         if (editText.trim() === '') {

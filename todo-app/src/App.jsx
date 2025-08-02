@@ -37,7 +37,7 @@ function App() {
 
   // Hàm xóa một công việc
   function handleDeleteTodo(index) {
-    // Lọc ra công việc cần xóa dựa trên index
+    // Lọc ra công việc cần xóa dựa trên index (giữ các phần tử có index khác với index cần xóa)
     let newTodoList = todos.filter((val, valIndex) => {
       return valIndex !== index
     })
